@@ -32,7 +32,7 @@ CREATE TABLE `accommodation` (
   `suburb` varchar(100) NOT NULL,
   `postalCode` varchar(10) NOT NULL,
   PRIMARY KEY (`accommodationId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +65,7 @@ CREATE TABLE `agency` (
   `emailDomain` varchar(100) NOT NULL,
   `website` varchar(255) NOT NULL,
   PRIMARY KEY (`agencyId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,7 +101,7 @@ CREATE TABLE `attraction` (
   `suburb` varchar(100) NOT NULL,
   `postalCode` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`attractionId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136,7 +136,7 @@ CREATE TABLE `attraction_itinerary` (
   KEY `fk_attractionIt_day` (`packageId`,`dayNumber`),
   CONSTRAINT `fk_attractionIt_day` FOREIGN KEY (`packageId`, `dayNumber`) REFERENCES `itineraryday` (`packageId`, `dayNumber`),
   CONSTRAINT `fk_attractionIt_id` FOREIGN KEY (`attractionId`) REFERENCES `attraction` (`attractionId`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -169,7 +169,7 @@ CREATE TABLE `cuisinetype` (
   PRIMARY KEY (`cuisineType`),
   KEY `fk_restaurant_cuisine` (`restaurantId`),
   CONSTRAINT `fk_restaurant_cuisine` FOREIGN KEY (`restaurantId`) REFERENCES `restaurant` (`restaurantId`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -201,7 +201,7 @@ CREATE TABLE `destination` (
   `cityName` varchar(255) NOT NULL,
   `province` varchar(255) NOT NULL,
   PRIMARY KEY (`destinationId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -232,10 +232,10 @@ CREATE TABLE `flight` (
   `flightId` int(11) NOT NULL AUTO_INCREMENT,
   `airline` varchar(255) NOT NULL,
   `arrivalAirport` varchar(255) NOT NULL,
-  `departureDate` date NOT NULL,
+  `departureAirport` varchar(255) NOT NULL,
   `price` decimal(10,2) NOT NULL,
   PRIMARY KEY (`flightId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -246,10 +246,10 @@ SET @OLD_AUTOCOMMIT=@@AUTOCOMMIT, @@AUTOCOMMIT=0;
 LOCK TABLES `flight` WRITE;
 /*!40000 ALTER TABLE `flight` DISABLE KEYS */;
 INSERT INTO `flight` VALUES
-(1,'FlySafair','CPT','2026-06-01',1500.00),
-(2,'Airlink','JNB','2026-06-02',1200.00),
-(3,'SA Express','MQP','2026-06-03',1800.00),
-(4,'Kulula','DUR','2026-06-04',1400.00);
+(1,'FlySafair','CPT','MQP',1500.00),
+(2,'Airlink','JNB','CPT',1200.00),
+(3,'SA Express','MQP','JNB',1800.00),
+(4,'Kulula','DUR','CPT',1400.00);
 /*!40000 ALTER TABLE `flight` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -268,7 +268,7 @@ CREATE TABLE `images` (
   PRIMARY KEY (`imagesURL`,`packageId`),
   KEY `fk_package_image` (`packageId`),
   CONSTRAINT `fk_package_image` FOREIGN KEY (`packageId`) REFERENCES `package` (`packageId`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -310,7 +310,7 @@ CREATE TABLE `itineraryday` (
   CONSTRAINT `fk_itinerary_destination` FOREIGN KEY (`destinationId`) REFERENCES `destination` (`destinationId`) ON DELETE CASCADE,
   CONSTRAINT `fk_itinerary_flight` FOREIGN KEY (`flightId`) REFERENCES `flight` (`flightId`) ON DELETE CASCADE,
   CONSTRAINT `fk_itinerary_package` FOREIGN KEY (`packageId`) REFERENCES `package` (`packageId`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -347,7 +347,7 @@ CREATE TABLE `package` (
   PRIMARY KEY (`packageId`),
   KEY `fk_package_agency` (`agencyId`),
   CONSTRAINT `fk_package_agency` FOREIGN KEY (`agencyId`) REFERENCES `agency` (`agencyId`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -376,14 +376,13 @@ DROP TABLE IF EXISTS `restaurant`;
 /*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `restaurant` (
   `restaurantId` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `cuisineTypeId` int(11) DEFAULT NULL,
+  `name` varchar(255) NOT NULL,  
   `buildingNumber` int(11) NOT NULL,
   `street` varchar(100) NOT NULL,
   `suburb` varchar(100) NOT NULL,
   `postalCode` varchar(10) NOT NULL,
   PRIMARY KEY (`restaurantId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -394,10 +393,10 @@ SET @OLD_AUTOCOMMIT=@@AUTOCOMMIT, @@AUTOCOMMIT=0;
 LOCK TABLES `restaurant` WRITE;
 /*!40000 ALTER TABLE `restaurant` DISABLE KEYS */;
 INSERT INTO `restaurant` VALUES
-(1,'Bella Italia',NULL,12,'Main Road','Sandton','2196'),
-(2,'Golden Dragon',NULL,44,'Market Street','Johannesburg','2001'),
-(3,'Braai House',NULL,8,'Heritage Rd','Pretoria','0001'),
-(4,'Burger Hub',NULL,55,'Central Ave','Cape Town','8001');
+(1,'Bella Italia',12,'Main Road','Sandton','2196'),
+(2,'Golden Dragon',44,'Market Street','Johannesburg','2001'),
+(3,'Braai House',8,'Heritage Rd','Pretoria','0001'),
+(4,'Burger Hub',55,'Central Ave','Cape Town','8001');
 /*!40000 ALTER TABLE `restaurant` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -418,7 +417,7 @@ CREATE TABLE `restaurant_itinerary` (
   KEY `fk_restaurantIt_day` (`packageId`,`dayNumber`),
   CONSTRAINT `fk_restaurantIt_Id` FOREIGN KEY (`restaurantId`) REFERENCES `restaurant` (`restaurantId`) ON DELETE CASCADE,
   CONSTRAINT `fk_restaurantIt_day` FOREIGN KEY (`packageId`, `dayNumber`) REFERENCES `itineraryday` (`packageId`, `dayNumber`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -457,7 +456,7 @@ CREATE TABLE `review` (
   KEY `fk_user_review` (`userId`),
   CONSTRAINT `fk_review_package` FOREIGN KEY (`packageId`) REFERENCES `package` (`packageId`) ON DELETE CASCADE,
   CONSTRAINT `fk_user_review` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -497,7 +496,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`userId`),
   KEY `fk_user_agency` (`agencyId`),
   CONSTRAINT `fk_user_agency` FOREIGN KEY (`agencyId`) REFERENCES `agency` (`agencyId`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -508,10 +507,10 @@ SET @OLD_AUTOCOMMIT=@@AUTOCOMMIT, @@AUTOCOMMIT=0;
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` VALUES
-(1,'Alex','Smith','0712345678','alex@mail.com','pass1','2026-01-10','South Africa',1),
-(2,'Jordan','Lee','0723456789','jordan@mail.com','pass2','2026-02-11','South Africa',2),
-(3,'Taylor','Brown','0734567890','taylor@mail.com','pass3','2026-03-05','South Africa',3),
-(4,'Casey','Davis','0745678901','casey@mail.com','pass4','2026-04-01','South Africa',4);
+(1,'Alex','Smith','0712345678','alex@mail.com','pass1','2026-01-10','South Africa',null),
+(2,'Jordan','Lee','0723456789','jordan@mail.com','pass2','2026-02-11',null,2),
+(3,'Taylor','Brown','0734567890','taylor@mail.com','pass3','2026-03-05',null,3),
+(4,'Casey','Davis','0745678901','casey@mail.com','pass4','2026-04-01','South Africa',null);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
