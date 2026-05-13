@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" pages="7">
   <diagram name="EER" id="nwk2kK9B8_vTZZuAgyKT">
-    <mxGraphModel dx="911" dy="546" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="2294" dy="1326" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -546,7 +546,7 @@
         <mxCell id="dgTdEtndvCaUMqe43PNp-383" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=default;labelBackgroundColor=default;" value="M" vertex="1">
           <mxGeometry height="30" width="60" x="671.5" y="1206" as="geometry" />
         </mxCell>
-        <mxCell id="dgTdEtndvCaUMqe43PNp-384" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=default;labelBackgroundColor=default;" value="M" vertex="1">
+        <mxCell id="dgTdEtndvCaUMqe43PNp-384" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=default;labelBackgroundColor=default;" value="1" vertex="1">
           <mxGeometry height="30" width="60" x="1062.5" y="1348" as="geometry" />
         </mxCell>
         <mxCell id="dgTdEtndvCaUMqe43PNp-385" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=default;labelBackgroundColor=default;" value="M" vertex="1">
@@ -869,7 +869,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="Step 2" id="hqN0UFjt4HpuNOsR-rO0">
-    <mxGraphModel dx="1071" dy="619" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1784" dy="1031" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="O1cLWMpyfu2WXCy3-3yE-0" />
         <mxCell id="O1cLWMpyfu2WXCy3-3yE-1" parent="O1cLWMpyfu2WXCy3-3yE-0" />
@@ -1076,6 +1076,9 @@
         </mxCell>
         <mxCell id="Cf37VACPlYAwHC51uj1a-7" parent="O1cLWMpyfu2WXCy3-3yE-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=17;" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;ItineraryDay&lt;/span&gt;" vertex="1">
           <mxGeometry height="30" width="60" x="58" y="434" as="geometry" />
+        </mxCell>
+        <mxCell id="8aYnEWjRiCTJ6PSWme0E-0" parent="O1cLWMpyfu2WXCy3-3yE-1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" value="&lt;font face=&quot;Arial, sans-serif&quot;&gt;&lt;span style=&quot;font-size: 14.6667px; white-space-collapse: preserve;&quot;&gt;accomodationId&lt;/span&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="40" width="120" x="640" y="458" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
@@ -2010,7 +2013,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="Step 8" id="JbfSd_mYE9_qebtYxS5x">
-    <mxGraphModel dx="845" dy="488" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1071" dy="619" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="gPneNJI9FiPLhGsfWeeX-0" />
         <mxCell id="gPneNJI9FiPLhGsfWeeX-1" parent="gPneNJI9FiPLhGsfWeeX-0" />
@@ -2255,8 +2258,8 @@
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="264" y="520" />
-              <mxPoint x="943" y="520" />
-              <mxPoint x="943" y="910" />
+              <mxPoint x="940" y="520" />
+              <mxPoint x="940" y="910" />
               <mxPoint x="263" y="910" />
             </Array>
           </mxGeometry>
@@ -2324,9 +2327,9 @@
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="263" y="1140" />
-              <mxPoint x="973" y="1140" />
-              <mxPoint x="973" y="540" />
-              <mxPoint x="264" y="540" />
+              <mxPoint x="940" y="1140" />
+              <mxPoint x="940" y="520" />
+              <mxPoint x="264" y="520" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -2342,7 +2345,7 @@
         <mxCell id="gPneNJI9FiPLhGsfWeeX-94" parent="gPneNJI9FiPLhGsfWeeX-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=17;" value="Restaurant_Itenerary" vertex="1">
           <mxGeometry height="30" width="60" x="131" y="1034" as="geometry" />
         </mxCell>
-        <mxCell id="gPneNJI9FiPLhGsfWeeX-95" parent="gPneNJI9FiPLhGsfWeeX-1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" value="&lt;span id=&quot;docs-internal-guid-f5ea59f9-7fff-58e7-eca1-30a64660772c&quot;&gt;&lt;span style=&quot;font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant: normal; text-decoration: underline; text-decoration-skip-ink: none; vertical-align: baseline; white-space: pre-wrap;&quot;&gt;imagesURL&lt;/span&gt;&lt;/span&gt;" vertex="1">
+        <mxCell id="gPneNJI9FiPLhGsfWeeX-95" parent="gPneNJI9FiPLhGsfWeeX-1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;fontStyle=4" value="&lt;span id=&quot;docs-internal-guid-f5ea59f9-7fff-58e7-eca1-30a64660772c&quot;&gt;&lt;span style=&quot;font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant: normal; text-decoration-skip-ink: none; vertical-align: baseline; white-space: pre-wrap;&quot;&gt;imagesURL&lt;/span&gt;&lt;/span&gt;" vertex="1">
           <mxGeometry height="40" width="120" x="83" y="1260" as="geometry" />
         </mxCell>
         <mxCell id="gPneNJI9FiPLhGsfWeeX-96" parent="gPneNJI9FiPLhGsfWeeX-1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;fontStyle=4" value="&lt;span id=&quot;docs-internal-guid-64589c0d-7fff-679d-b39b-653bf25367a9&quot;&gt;&lt;span style=&quot;font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;&quot;&gt;packageId&lt;/span&gt;&lt;/span&gt;" vertex="1">
@@ -2373,6 +2376,9 @@
         </mxCell>
         <mxCell id="f3AD7YQSTw832nlwiNxW-1" parent="gPneNJI9FiPLhGsfWeeX-1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" value="agencyId" vertex="1">
           <mxGeometry height="40" width="120" x="1043" y="59" as="geometry" />
+        </mxCell>
+        <mxCell id="9sE4Z0xCyezPzesEyn1n-0" parent="gPneNJI9FiPLhGsfWeeX-1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" value="maxCapacity" vertex="1">
+          <mxGeometry height="40" width="120" x="803" y="359" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
