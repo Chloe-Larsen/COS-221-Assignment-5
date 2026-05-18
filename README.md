@@ -13,6 +13,6 @@ Team members:
 
 Here is how to get the app running on your local environment:
 
-1. Configure XAMPP Apache server to point to the `/src` directory.
+1. Configure XAMPP Apache server to point to the `/public` directory.
 2. Start the XAMPP Apache server.
 3. Open `http://localhost` in your browser.
