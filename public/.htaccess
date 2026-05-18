@@ -1,0 +1,14 @@
+# Turn on the rewrite engine
+RewriteEngine On
+
+# Ensure the RewriteBase matches your public directory root
+RewriteBase /
+
+# If the requested filename is a real, existing directory, don't rewrite
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# If the requested filename is a real, existing file, don't rewrite
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Silently route everything else to index.php
+RewriteRule ^ index.php [L]
