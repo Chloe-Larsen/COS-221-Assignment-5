@@ -1,0 +1,7 @@
+/* flights.css - bare bones */
+main {
+    margin: 20px 0;
+}
+ul {
+    list-style-type: square;
+}

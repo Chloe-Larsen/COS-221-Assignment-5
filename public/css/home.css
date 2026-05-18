@@ -1,0 +1,6 @@
+/* home.css - bare bones */
+main {
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px dashed gray;
+}

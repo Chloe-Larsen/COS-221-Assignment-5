@@ -23,12 +23,26 @@ $routes = [
     '/api/test' => 'api/test.php',
 
     // views
-    '/' => 'views/home.html'
+    '/' => 'views/home.php',
+    '/flights' => 'views/flights.php',
+    '/destinations' => 'views/destinations.php',
+    '/attractions' => 'views/attractions.php',
+    '/accomodations' => 'views/accomodations.php',
+    '/accommodations' => 'views/accomodations.php',
+    '/packages' => 'views/packages.php',
+    '/dashboard' => 'views/dashboard.php',
+    '/login' => 'views/login.php',
+    '/signup' => 'views/signup.php'
 ];
 
 if (array_key_exists($currentRoute, $routes)) {
     $targetFile = __DIR__ . '/../app/' . $routes[$currentRoute];
     require_once $targetFile;
+
+    if (!str_starts_with($currentRoute, "/api")) {
+        // not API -> assume HTML and exit
+        exit;
+    }
 }
 
 sendRes(404, ["message" => "Invalid endpoint or method"]);
