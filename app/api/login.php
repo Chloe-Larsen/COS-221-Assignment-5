@@ -18,6 +18,6 @@ if ($method === "POST") {
         sendRes(400, ["error" => "Invalid username or password"]);
     }
 
-    setcookie('apiKey', $dbUser["apiKey"]);
+    setcookie('apiKey', $user["apiKey"]);
     sendRes(200);
 }

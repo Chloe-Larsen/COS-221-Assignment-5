@@ -6,8 +6,6 @@
 
 $routes = [    
     '/api/accomodation' => 'api/accomodation',
-    '/api/agency-register' => 'api/agency-register',
-    '/api/agency-user-register' => 'api/agency-user-register',
     '/api/attraction' => 'api/attraction',
     '/api/destination' => 'api/destination',
     '/api/itinerary-day' => 'api/itinerary-day',
@@ -15,8 +13,8 @@ $routes = [
     '/api/package' => 'api/package',
     '/api/restaurant' => 'api/restaurant',
     '/api/review' => 'api/review',
-    '/api/traveller-register' => 'api/traveller-registerd',
-
+    '/api/register/agency-user' => 'api/register-agency-user',
+    '/api/register/traveller' => 'api/register-traveller'
 ];
 
 if (array_key_exists($currentRoute, $routes)) {
