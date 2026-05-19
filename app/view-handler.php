@@ -18,7 +18,7 @@ $routes = [
 ];
 
 if ($method === "GET" && array_key_exists($currentRoute, $routes)) {
-    $targetFile = __DIR__ . "/../app/" . $routes[$currentRoute];
+    $targetFile = __DIR__ . "/" . $routes[$currentRoute];
     require_once $targetFile;
     exit; // terminate after rendering page
 }
