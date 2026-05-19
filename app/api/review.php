@@ -11,8 +11,8 @@ if ($method === "GET") {
         }
     } else {
         $query = "SELECT * FROM Review";
-        $accommodations = $db->fetchAll($query);
-        sendRes(200, ["message" => "Success", "data" => $accommodations]);
+        $review = $db->fetchAll($query);
+        sendRes(200, ["message" => "Success", "data" => $review]);
     }
 } else if ($method === "POST") {
     $query = "INSERT INTO Review (rating, comment, timestamp, userId, packageId) 
