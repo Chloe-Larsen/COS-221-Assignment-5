@@ -4,7 +4,7 @@ Team name: `Laggage`
 
 Team members:
 - Caleb Jennings, u25173805
-- *Add your name here! (im too lazy 👉👈)*
+- Chloe Larsen, u25004141
 - *Add your name here! (im too lazy 👉👈)*
 - *Add your name here! (im too lazy 👉👈)*
 - *Add your name here! (im too lazy 👉👈)*
