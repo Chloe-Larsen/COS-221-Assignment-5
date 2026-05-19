@@ -5,9 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In - Travel Agency</title>
-
-    <link rel="stylesheet" href="/css/global.css" />
-    <link rel="stylesheet" href="/css/login.css" />
 </head>
 
 <body>
@@ -15,17 +12,24 @@
 
     <main>
         <h1>Log In</h1>
-        <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Logged In!');">
+        
+        <div id="alert-box" style="display: none; color: red; margin-bottom: 10px;"></div>
+        
+        <form id="login-form">
             <div>
-                <label for="username">Username:</label>
-                <input type="text" id="username" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
             </div>
+            
             <div>
                 <label for="password">Password:</label>
                 <input type="password" id="password" required>
             </div>
-            <button type="submit">Log In</button>
+            
+            <button type="submit" id="submit-btn">Log In</button>
         </form>
+
+        <p>Don't have an account? <a href="/signup">Sign Up</a></p>
     </main>
 
     <script src="/javascript/global.js"></script>

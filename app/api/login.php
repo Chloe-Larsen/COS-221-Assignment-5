@@ -3,7 +3,7 @@
 if ($method === "POST") {
     // check username and password
     if (!isset($data["email"]) || !is_string($data["email"])) {
-        sendRes(400, ["message" => "Invalid username"]);
+        sendRes(400, ["message" => "Invalid email"]);
     }
     if (!isset($data["password"]) || !is_string($data["password"])) {
         sendRes(400, ["message" => "Invalid password"]);
@@ -18,6 +18,6 @@ if ($method === "POST") {
         sendRes(400, ["error" => "Invalid username or password"]);
     }
 
-    setcookie('apiKey', $user["apiKey"]);
+    setCookieHelper('apiKey', $user["apiKey"]);
     sendRes(200);
 }
