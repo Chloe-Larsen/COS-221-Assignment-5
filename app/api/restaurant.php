@@ -11,8 +11,8 @@ if ($method === "GET") {
         }
     } else {
         $query = "SELECT * FROM Restaurant";
-        $accommodations = $db->fetchAll($query);
-        sendRes(200, ["message" => "Success", "data" => $accommodations]);
+        $restaurant = $db->fetchAll($query);
+        sendRes(200, ["message" => "Success", "data" => $restaurant]);
     }
 } else if ($method === "POST") {
     if (empty($user['agencyId'])) {
