@@ -16,3 +16,25 @@ Here is how to get the app running on your local environment:
 1. Configure XAMPP Apache server to point to the `/public` directory.
 2. Start the XAMPP Apache server.
 3. Open `http://localhost` in your browser.
+
+## Backend Flow
+
+Here is how requests to the server are handled:
+
+1. Browser makes request to backend.
+2. Request is forwarded to `index.php`.
+3. If the request path starts with `/api` then the request is forwarded to `api-handler.php` (using a `require_once`). Otherwise, the request is forwarded to `view-handler.php`.
+
+### `api-handler.php`
+
+4. Maps the path to an API endpoint handler.
+
+*Summary:* `index > API handler > API endpoint handler`
+
+### `view-handler.php`
+
+4. Checks that the method is `GET`.
+5. Includes data needed to render buttons based on login state (like log in, sign up and log out buttons).
+6. Maps the path to a view (actual page html) or a controller to render the page (a controller is just a file that gets some data that the view needs before rendering the view).
+
+*Summary:* `index > view handler > view` **OR** `index > view handler > view controller > view`

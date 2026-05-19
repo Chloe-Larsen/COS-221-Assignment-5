@@ -5,8 +5,6 @@
 
 $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $currentRoute = '/' . trim($requestUri, '/');
-
-// values for API
 $method = $_SERVER["REQUEST_METHOD"];
 $data = json_decode(file_get_contents("php://input"), true);
 
@@ -18,31 +16,12 @@ function sendRes($httpCode, $json)
     exit;
 }
 
-$routes = [
-    // api
-    '/api/test' => 'api/test.php',
-
-    // views
-    '/' => 'views/home.php',
-    '/flights' => 'views/flights.php',
-    '/destinations' => 'views/destinations.php',
-    '/attractions' => 'views/attractions.php',
-    '/accomodations' => 'views/accomodations.php',
-    '/accommodations' => 'views/accomodations.php',
-    '/packages' => 'views/packages.php',
-    '/dashboard' => 'views/dashboard.php',
-    '/login' => 'views/login.php',
-    '/signup' => 'views/signup.php'
-];
-
-if (array_key_exists($currentRoute, $routes)) {
-    $targetFile = __DIR__ . '/../app/' . $routes[$currentRoute];
-    require_once $targetFile;
-
-    if (!str_starts_with($currentRoute, "/api")) {
-        // not API -> assume HTML and exit
-        exit;
-    }
+if (str_starts_with($currentRoute, "/api")) {
+    // forward to API handler
+    require_once "./api-handler.php";
+} else {
+    // forward to view handler
+    require_once "./view-handler.php";
 }
 
 sendRes(404, ["message" => "Invalid endpoint or method"]);
