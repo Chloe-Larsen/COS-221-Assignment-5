@@ -4,19 +4,18 @@
     Handles routing for all API endpoints.
 */
 
-$routes = [    
-    '/api/accomodation' => 'api/accomodation',
-    '/api/agency-register' => 'api/agency-register',
-    '/api/agency-user-register' => 'api/agency-user-register',
-    '/api/attraction' => 'api/attraction',
-    '/api/destination' => 'api/destination',
-    '/api/itinerary-day' => 'api/itinerary-day',
-    '/api/login' => 'api/login',
-    '/api/package' => 'api/package',
-    '/api/restaurant' => 'api/restaurant',
-    '/api/review' => 'api/review',
-    '/api/traveller-register' => 'api/traveller-registerd',
-
+$routes = [
+    '/api/accomodation' => 'api/accomodation.php',
+    '/api/attraction' => 'api/attraction.php',
+    '/api/destination' => 'api/destination.php',
+    '/api/itinerary-day' => 'api/itinerary-day.php',
+    '/api/login' => 'api/login.php',
+    '/api/package' => 'api/package.php',
+    '/api/restaurant' => 'api/restaurant.php',
+    '/api/review' => 'api/review.php',
+    '/api/register/agency-user' => 'api/register-agency-user.php',
+    '/api/register/traveller' => 'api/register-traveller.php',
+    '/api/test' => 'api/test.php'
 ];
 
 if (array_key_exists($currentRoute, $routes)) {
