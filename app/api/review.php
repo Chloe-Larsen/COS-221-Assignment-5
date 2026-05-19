@@ -15,6 +15,9 @@ if ($method === "GET") {
         sendRes(200, ["message" => "Success", "data" => $review]);
     }
 } else if ($method === "POST") {
+    if (empty($user['userId'])) {
+        sendRes(401, ["message" => "Unauthorized. Please log in to leave a review."]);
+    }
     $query = "INSERT INTO Review (rating, comment, timestamp, userId, packageId) 
                 VALUES (:rating, :comment, :timestamp, :userId, :packageId)";
 
