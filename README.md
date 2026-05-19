@@ -13,9 +13,19 @@ Team members:
 
 Here is how to get the app running on your local environment:
 
-1. Configure XAMPP Apache server to point to the `/public` directory.
-2. Start the XAMPP Apache server.
-3. Open `http://localhost` in your browser.
+1. Create a `.env` file in the project root and include the required variables (see below).
+2. Configure XAMPP Apache server to point to the `/public` directory.
+3. Start the XAMPP Apache server.
+4. Open `http://localhost` in your browser.
+
+## Environment Variables
+
+Must be included inside the `.env` file in the root of the project.
+
+- `DB_HOST`
+- `DB_NAME`
+- `DB_USER`
+- `DB_PASSWORD`
 
 ## Backend Flow
 

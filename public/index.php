@@ -21,10 +21,10 @@ function sendRes($httpCode, $json = null)
 
 if (str_starts_with($currentRoute, "/api")) {
     // forward to API handler
-    require_once "../app/api-handler.php";
+    require_once __DIR__ . "/../app/api-handler.php";
 } else {
     // forward to view handler
-    require_once "../app/view-handler.php";
+    require_once __DIR__ . "/../app/view-handler.php";
 }
 
 sendRes(404, ["message" => "Invalid endpoint or method"]);

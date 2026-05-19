@@ -34,10 +34,10 @@ if ($method === "POST") {
     }
 
     $hashedPassword = password_hash($data["password"], PASSWORD_ARGON2ID); // hash password with salt included
-    $apiKey = bin2hex(random_bytes(32));
+    $apiKey = bin2hex(random_bytes(32)); // generate API key
 
     // add user to database
-    $dbc->execute("INSERT INTO Users (email, password, firstName, lastName, phoneNumber, country, apiKey) VALUES (:email, :password, :firstName, :lastName, :phoneNumber, :country, :apiKey)", [
+    $db->execute("INSERT INTO Users (email, password, firstName, lastName, phoneNumber, country, apiKey) VALUES (:email, :password, :firstName, :lastName, :phoneNumber, :country, :apiKey)", [
         "email" => $email,
         "password" => $hashedPassword,
         "firstName" => $data["firstName"],
