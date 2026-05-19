@@ -27,7 +27,7 @@ if ($method === "GET") {
         ':street' => isset($data['street']) ? $data['street'] : null,
         ':suburb' => isset($data['suburb']) ? $data['suburb'] : null,
         ':postalCode' => isset($data['postalCode']) ? $data['postalCode'] : null,
-        ':agencyId' => (int) $data['agencyId']
+        ':agencyId' => (int) $user['agencyId']
     ];
     if ($db->execute($query, $params)) {
         sendRes(201, ["message" => "Restaurant created successfully."]);
