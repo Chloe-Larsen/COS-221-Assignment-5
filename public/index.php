@@ -8,6 +8,9 @@ $currentRoute = '/' . trim($requestUri, '/');
 $method = $_SERVER["REQUEST_METHOD"];
 $data = json_decode(file_get_contents("php://input"), true);
 
+require_once "../app/services/env-loader.php"; // load environment variables into $_ENV
+require_once "../app/services/database-connection.php"; // get connection to database as $db variable
+
 function sendRes($httpCode, $json)
 {
     header("Content-Type: application/json"); // tell the client that json is being sent back
