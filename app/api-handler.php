@@ -15,7 +15,7 @@ function setCookieHelper($name, $value)
         '/',        // Available across your entire site folder structure
         '',         // Current domain
         true,       // Secure: Only transmit over HTTPS (set to false ONLY on local localhost without SSL)
-        true        // HttpOnly: Hidden from JavaScript. Blocks XSS theft completely!
+        false        // HttpOnly: Hidden from JavaScript. Blocks XSS theft completely! (false so that frontend js can remove the cookie)
     );
 }
 
