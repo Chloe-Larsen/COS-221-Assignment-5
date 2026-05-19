@@ -11,7 +11,7 @@ $data = json_decode(file_get_contents("php://input"), true);
 require_once "../app/services/env-loader.php"; // load environment variables into $_ENV
 require_once "../app/services/database-connection.php"; // get connection to database as $db variable
 
-function sendRes($httpCode, $json)
+function sendRes($httpCode, $json = null)
 {
     header("Content-Type: application/json"); // tell the client that json is being sent back
     http_response_code($httpCode);
@@ -21,7 +21,7 @@ function sendRes($httpCode, $json)
 
 if (str_starts_with($currentRoute, "/api")) {
     // forward to API handler
-    require_once  "../app/api-handler.php";
+    require_once "../app/api-handler.php";
 } else {
     // forward to view handler
     require_once "../app/view-handler.php";
