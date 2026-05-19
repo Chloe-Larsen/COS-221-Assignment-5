@@ -24,7 +24,7 @@ if ($method === "GET") {
     $params = [
         ':cityName' => $data['cityName'],
         ':province' => isset($data['province']) ? $data['province'] : null,
-        ':agencyId' => isset($data['agencyId']) ? $data['agencyId'] : null
+        ':agencyId' => isset($user['agencyId']) ? $user['agencyId'] : null
     ];
     if ($db->execute($query, $params)) {
         sendRes(201, ["message" => "Destination created successfully."]);
