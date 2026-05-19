@@ -1,7 +1,7 @@
 <?php
 if ($method === "GET") {
     if (isset($_GET['id'])) {
-        $query = "SELECT * FROM Review WHERE restaurantId = :id";
+        $query = "SELECT * FROM Review WHERE reviewId = :id";
         $review = $db->fetch($query, [':id' => $_GET['id']]);
 
         if ($review) {
