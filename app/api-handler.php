@@ -4,6 +4,21 @@
     Handles routing for all API endpoints.
 */
 
+// helper function for setting cookies
+
+function setCookieHelper($name, $value)
+{
+    setcookie(
+        $name,
+        $value,
+        time() + (30 * 24 * 60 * 60), // expiration time: 30 days from now
+        '/',        // Available across your entire site folder structure
+        '',         // Current domain
+        true,       // Secure: Only transmit over HTTPS (set to false ONLY on local localhost without SSL)
+        true        // HttpOnly: Hidden from JavaScript. Blocks XSS theft completely!
+    );
+}
+
 $routes = [
     '/api/accomodation' => 'api/accomodation.php',
     '/api/attraction' => 'api/attraction.php',

@@ -37,16 +37,17 @@ if ($method === "POST") {
     $apiKey = bin2hex(random_bytes(32)); // generate API key
 
     // add user to database
-    $db->execute("INSERT INTO Users (email, password, firstName, lastName, phoneNumber, country, apiKey) VALUES (:email, :password, :firstName, :lastName, :phoneNumber, :country, :apiKey)", [
+    $db->execute("INSERT INTO User (email, password, firstName, lastName, phoneNumber, country, apiKey, dateJoined) VALUES (:email, :password, :firstName, :lastName, :phoneNumber, :country, :apiKey, :dateJoined)", [
         "email" => $email,
         "password" => $hashedPassword,
         "firstName" => $data["firstName"],
         "lastName" => $data["lastName"],
         "phoneNumber" => $data["phoneNumber"],
         "country" => $data["country"],
-        "apiKey" => $data["apiKey"]
+        "apiKey" => $apiKey,
+        "dateJoined" => date('Y-m-d')
     ]);
 
-    setcookie('apiKey', $apiKey);
+    setCookieHelper('apiKey', $apiKey);
     sendRes(200);
 }
