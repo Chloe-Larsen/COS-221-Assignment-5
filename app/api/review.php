@@ -25,7 +25,7 @@ if ($method === "GET") {
         ':rating' => $data['rating'],        
         ':comment' => isset($data['comment']) ? $data['comment'] : null,
         ':timestamp' => isset($data['timestamp']) ? $data['timestamp'] : null,
-        ':userId' => isset($user['userId']) ? $user['userId'] : null,
+        ':userId' => $user['userId'],
         ':packageId' => isset($data['packageId']) ? $data['packageId'] : null        
     ];
     if ($db->execute($query, $params)) {
