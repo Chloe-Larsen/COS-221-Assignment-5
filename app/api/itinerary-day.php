@@ -23,9 +23,7 @@ if ($method === "GET") {
     }
 
 } else if ($method === "POST") {
-    if (empty($authenticated_user['agencyId'])) {
-        send_res(403, ["message" => "Only Travel Agencies can create itinerary days."]);
-    }
+    authenticate_user();
 
     if (empty($data['packageId']) || empty($data['dayNumber'])) {
         send_res(400, ["message" => "Incomplete data. 'packageId' and 'dayNumber' are required."]);
@@ -60,6 +58,7 @@ if ($method === "GET") {
     }
 
 } else if ($method === "PUT") {
+    authenticate_user();
     if (empty($data['packageId']) || empty($data['dayNumber'])) {
         send_res(400, ["message" => "Incomplete data. Both 'packageId' and 'dayNumber' are required to update."]);
     }

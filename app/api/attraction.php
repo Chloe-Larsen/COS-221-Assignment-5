@@ -15,8 +15,10 @@ if ($method === "GET") {
         send_res(200, ["message" => "Success", "data" => $accommodations]);
     }
 } else if ($method === "POST") {
-    if (empty($authenticated_user['agencyId'])) {
-        send_res(400, ["message" => "Incomplete data. 'agencyId' is required."]);
+    authenticate_user();
+
+    if ($authenticated_user["agencyId"] !== $data["agencyId"]) {
+        send_res(403, ["message" => "No permission to modify the agency"]);
     }
     $query = "INSERT INTO Attraction (name, entranceFee, buildingNumber, street, suburb, postalCode, agencyId) 
                 VALUES (:name, :entranceFee, :buildingNumber, :street, :suburb, :postalCode, :agencyId)";
@@ -28,7 +30,7 @@ if ($method === "GET") {
         ':street' => isset($data['street']) ? $data['street'] : null,
         ':suburb' => isset($data['suburb']) ? $data['suburb'] : null,
         ':postalCode' => isset($data['postalCode']) ? $data['postalCode'] : null,
-        ':agencyId' => (int) $authenticated_user['agencyId']
+        ':agencyId' => $data['agencyId']
     ];
     if ($db->execute($query, $params)) {
         send_res(201, ["message" => "Attraction created successfully."]);
@@ -36,6 +38,7 @@ if ($method === "GET") {
         send_res(503, ["message" => "Unable to create attraction."]);
     }
 } else if ($method === "PUT") {
+    authenticate_user();
     if (empty($data['attractionId'])) {
         send_res(400, ["message" => "Incomplete data. 'attractionId' is required."]);
     }
