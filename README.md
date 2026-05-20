@@ -5,7 +5,7 @@ Team name: `Laggage`
 Team members:
 - Caleb Jennings, u25173805
 - Chloe Larsen, u25004141
-- Kopano Lediga, u05173532
+- Anchen Kruger u25073703
 - *Add your name here! (im too lazy 👉👈)*
 - *Add your name here! (im too lazy 👉👈)*
 

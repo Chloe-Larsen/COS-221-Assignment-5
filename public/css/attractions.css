@@ -1,4 +1,90 @@
-/* attractions.css - bare bones */
-main {
-    margin: 20px 0;
+.attractions-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.attractions-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--warm-gray-800);
+}
+
+.attractions-header p {
+    color: var(--warm-gray-600);
+}
+
+.attraction-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.attraction-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.attraction-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.attraction-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.featured-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: var(--primary);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.attraction-content {
+    padding: 1.5rem;
+}
+
+.attraction-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--warm-gray-800);
+}
+
+.attraction-location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--warm-gray-500);
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.ticket-price {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-top: 0.75rem;
+}
+
+@media (max-width: 768px) {
+    .attractions-header h1 {
+        font-size: 1.8rem;
+    }
+    .attraction-grid {
+        grid-template-columns: 1fr;
+    }
 }

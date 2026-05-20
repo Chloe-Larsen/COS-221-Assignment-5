@@ -1,7 +1,113 @@
-/* flights.css - bare bones */
-main {
-    margin: 20px 0;
+.flights-header {
+    margin-bottom: 2rem;
 }
-ul {
-    list-style-type: square;
+
+.flights-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.search-form {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    margin-bottom: 2rem;
+}
+
+.search-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.flight-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.flight-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.flight-card:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.flight-route {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.departure, .arrival {
+    text-align: center;
+}
+
+.city {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--gray-800);
+}
+
+.time {
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    margin-top: 0.25rem;
+}
+
+.flight-line {
+    flex: 1;
+    text-align: center;
+    color: var(--gray-400);
+}
+
+.flight-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--gray-200);
+    flex-wrap: wrap;
+}
+
+.flight-number {
+    font-size: 0.875rem;
+    color: var(--gray-500);
+}
+
+.flight-price {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+@media (max-width: 768px) {
+    .flights-header h1 {
+        font-size: 1.8rem;
+    }
+    .search-form {
+        padding: 1.5rem;
+    }
+    .search-row {
+        grid-template-columns: 1fr;
+    }
+    .flight-route {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .flight-line {
+        display: none;
+    }
 }

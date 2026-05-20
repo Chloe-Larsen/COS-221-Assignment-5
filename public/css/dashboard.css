@@ -1,9 +1,99 @@
-/* dashboard.css - bare bones */
-main {
-    margin: 20px 0;
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2rem;
+    margin-top: 1rem;
 }
-section {
-    border: 1px solid black;
-    margin: 10px 0;
-    padding: 10px;
+
+.form-card, .packages-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+}
+
+.form-card h2, .packages-card h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--warm-gray-800);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.packages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.package-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: var(--pastel-peach);
+    border-radius: var(--radius-md);
+    transition: all 0.2s ease;
+}
+
+.package-row:hover {
+    background: var(--pastel-pink);
+}
+
+.package-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.package-info strong {
+    font-size: 1rem;
+    color: var(--warm-gray-800);
+}
+
+.destination {
+    font-size: 0.875rem;
+    color: var(--warm-gray-600);
+}
+
+.price {
+    font-weight: 600;
+    color: var(--primary-dark);
+}
+
+.delete-btn {
+    background: transparent;
+    color: var(--danger);
+    padding: 0.25rem 0.75rem;
+}
+
+.delete-btn:hover {
+    background: var(--danger);
+    color: var(--white);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: var(--warm-gray-400);
+}
+
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    .package-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
 }
