@@ -55,12 +55,12 @@ DROP TABLE IF EXISTS `accommodationimage`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `accommodationimage` (
+  `imageId` int NOT NULL AUTO_INCREMENT,
+  `url` varchar(255) NOT NULL,
   `accommodationId` int NOT NULL,
-  `imageId` int NOT NULL,
-  PRIMARY KEY (`accommodationId`,`imageId`),
-  KEY `imageId` (`imageId`),
-  CONSTRAINT `accommodationimage_ibfk_1` FOREIGN KEY (`accommodationId`) REFERENCES `accommodation` (`accommodationId`) ON DELETE CASCADE,
-  CONSTRAINT `accommodationimage_ibfk_2` FOREIGN KEY (`imageId`) REFERENCES `image` (`imageId`) ON DELETE CASCADE
+  PRIMARY KEY (`imageId`),
+  KEY `fk_accommodation_image` (`accommodationId`),
+  CONSTRAINT `fk_accommodation_image` FOREIGN KEY (`accommodationId`) REFERENCES `accommodation` (`accommodationId`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -139,12 +139,12 @@ DROP TABLE IF EXISTS `attractionimage`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `attractionimage` (
-  `attractionId` int NOT NULL,
   `imageId` int NOT NULL,
-  PRIMARY KEY (`attractionId`,`imageId`),
-  KEY `imageId` (`imageId`),
-  CONSTRAINT `attractionimage_ibfk_1` FOREIGN KEY (`attractionId`) REFERENCES `attraction` (`attractionId`) ON DELETE CASCADE,
-  CONSTRAINT `attractionimage_ibfk_2` FOREIGN KEY (`imageId`) REFERENCES `image` (`imageId`) ON DELETE CASCADE
+  `url` varchar(255) NOT NULL,
+  `attractionId` int NOT NULL,
+  PRIMARY KEY (`imageId`),
+  KEY `fk_attraction_image_idx` (`attractionId`),
+  CONSTRAINT `fk_attraction_image` FOREIGN KEY (`attractionId`) REFERENCES `attraction` (`attractionId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -193,12 +193,12 @@ DROP TABLE IF EXISTS `destinationimage`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `destinationimage` (
-  `destinationId` int NOT NULL,
   `imageId` int NOT NULL,
-  PRIMARY KEY (`destinationId`,`imageId`),
-  KEY `imageId` (`imageId`),
-  CONSTRAINT `destinationimage_ibfk_1` FOREIGN KEY (`destinationId`) REFERENCES `destination` (`destinationId`) ON DELETE CASCADE,
-  CONSTRAINT `destinationimage_ibfk_2` FOREIGN KEY (`imageId`) REFERENCES `image` (`imageId`) ON DELETE CASCADE
+  `url` varchar(255) NOT NULL,
+  `destinationId` int NOT NULL,
+  PRIMARY KEY (`imageId`),
+  KEY `fk_destination_image_idx` (`destinationId`),
+  CONSTRAINT `fk_destination_image` FOREIGN KEY (`destinationId`) REFERENCES `destination` (`destinationId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -236,29 +236,6 @@ LOCK TABLES `flight` WRITE;
 /*!40000 ALTER TABLE `flight` DISABLE KEYS */;
 INSERT INTO `flight` VALUES (1,'FlySafair',950.00,'JNB','CPT'),(2,'Airlink',1500.00,'JNB','MQP'),(3,'LIFT',1100.00,'JNB','CPT'),(4,'CemAir',1800.00,'JNB','BFN'),(5,'South African Airways',1600.00,'CPT','DUR'),(6,'FlySafair',850.00,'HLA','CPT'),(7,'Airlink',2100.00,'JNB','PTG'),(8,'FlySafair',900.00,'JNB','PLZ'),(9,'CemAir',2400.00,'CPT','KIM'),(10,'LIFT',1300.00,'JNB','DUR'),(11,'Airlink',2800.00,'CPT','GRJ'),(12,'South African Airways',1450.00,'JNB','PLZ'),(13,'FlySafair',1150.00,'CPT','HLA'),(14,'Airlink',3100.00,'JNB','UTN'),(15,'CemAir',2200.00,'JNB','MQP'),(16,'FlySafair',1050.00,'DUR','PLZ'),(17,'Airlink',2500.00,'JNB','PHW'),(18,'LIFT',1250.00,'CPT','DUR'),(19,'South African Airways',1850.00,'JNB','CPT'),(20,'Airlink',3400.00,'CPT','MQP');
 /*!40000 ALTER TABLE `flight` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `image`
---
-
-DROP TABLE IF EXISTS `image`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `image` (
-  `imageId` int NOT NULL AUTO_INCREMENT,
-  `url` varchar(255) NOT NULL,
-  PRIMARY KEY (`imageId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `image`
---
-
-LOCK TABLES `image` WRITE;
-/*!40000 ALTER TABLE `image` DISABLE KEYS */;
-/*!40000 ALTER TABLE `image` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -446,12 +423,12 @@ DROP TABLE IF EXISTS `restaurantimage`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `restaurantimage` (
-  `restaurantId` int NOT NULL,
   `imageId` int NOT NULL,
-  PRIMARY KEY (`restaurantId`,`imageId`),
-  KEY `imageId` (`imageId`),
-  CONSTRAINT `restaurantimage_ibfk_1` FOREIGN KEY (`restaurantId`) REFERENCES `restaurant` (`restaurantId`) ON DELETE CASCADE,
-  CONSTRAINT `restaurantimage_ibfk_2` FOREIGN KEY (`imageId`) REFERENCES `image` (`imageId`) ON DELETE CASCADE
+  `url` varchar(255) NOT NULL,
+  `restaurantId` int NOT NULL,
+  PRIMARY KEY (`imageId`),
+  KEY `fk_restaurant_image_idx` (`restaurantId`),
+  CONSTRAINT `fk_restaurant_image` FOREIGN KEY (`restaurantId`) REFERENCES `restaurant` (`restaurantId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -539,4 +516,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-05-19 16:12:15
+-- Dump completed on 2026-05-20  9:58:45

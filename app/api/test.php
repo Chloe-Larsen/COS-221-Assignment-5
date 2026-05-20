@@ -5,11 +5,11 @@
 
 if ($method === "POST") {
     if (isset($data["value"])) {
-        sendRes(200, [
+        send_res(200, [
             "message" => "Value received successfully",
             "data" => $data["value"]
         ]);
     } else {
-        sendRes(400, ["message" => "No value provided"]);
+        send_res(400, ["message" => "No value provided"]);
     }
 }

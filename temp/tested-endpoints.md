@@ -1,0 +1,3 @@
+# Tested Endpoints
+
+- `accommodation`
