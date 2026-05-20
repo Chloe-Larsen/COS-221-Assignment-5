@@ -1,4 +1,88 @@
-/* destinations.css - bare bones */
-main {
-    margin: 20px 0;
+.destinations-header {
+    margin-bottom: 2rem;
+}
+
+.destinations-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.search-bar {
+    margin: 2rem 0;
+}
+
+.search-input {
+    max-width: 400px;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+}
+
+.destination-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.destination-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+}
+
+.destination-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.destination-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.destination-content {
+    padding: 1.5rem;
+}
+
+.destination-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.destination-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.75rem 0;
+    flex-wrap: wrap;
+}
+
+.attractions-count {
+    color: var(--gray-500);
+    font-size: 0.875rem;
+}
+
+.popularity {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: #FBBF24;
+    font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+    .destinations-header h1 {
+        font-size: 1.8rem;
+    }
+    .destination-grid {
+        grid-template-columns: 1fr;
+    }
 }
