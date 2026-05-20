@@ -7,7 +7,7 @@ Team members:
 - Chloe Larsen, u25004141
 - Anchen Kruger u25073703
 - Kopano Lediga, u05173532
-- Chloe Larsen, u25004141
+- Kayla Beyers, u25362722
 
 ## Getting Started
 
