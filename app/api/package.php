@@ -15,8 +15,10 @@ if ($method === "GET") {
         send_res(200, ["message" => "Success", "data" => $package]);
     }
 } else if ($method === "POST") {
-    if (empty($authenticated_user['agencyId'])) {
-        send_res(401, ["message" => "Unauthorized. A 'agencyId' is required."]);
+    authenticate_user();
+
+    if ($authenticated_user["agencyId"] !== $data["agencyId"]) {
+        send_res(403, ["message" => "No permission to modify the agency"]);
     }
     $query = "INSERT INTO Package (name, description, duration, basePrice, agencyId, maxCapacity) 
                 VALUES (:name, :description, :duration, :basePrice, :agencyId, :maxCapacity)";
@@ -26,7 +28,7 @@ if ($method === "GET") {
         ':description' => isset($data['description']) ? $data['description'] : null,
         ':duration' => isset($data['duration']) ? $data['duration'] : null,
         ':basePrice' => isset($data['basePrice']) ? $data['basePrice'] : null,
-        ':agencyId' => $authenticated_user['agencyId'],
+        ':agencyId' => $data['agencyId'],
         ':maxCapacity' => isset($data['maxCapacity']) ? $data['maxCapacity'] : null
     ];
     if ($db->execute($query, $params)) {
@@ -35,6 +37,7 @@ if ($method === "GET") {
         send_res(503, ["message" => "Unable to create package."]);
     }
 } else if ($method === "PUT") {
+    authenticate_user();
     if (empty($data['packageId'])) {
         send_res(401, ["message" => "Unauthorized. A 'agencyId' is required."]);
     }

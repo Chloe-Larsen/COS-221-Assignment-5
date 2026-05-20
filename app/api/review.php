@@ -15,6 +15,7 @@ if ($method === "GET") {
         send_res(200, ["message" => "Success", "data" => $review]);
     }
 } else if ($method === "POST") {
+    authenticate_user();
     if (empty($authenticated_user['userId'])) {
         send_res(401, ["message" => "Unauthorized. Please log in to leave a review."]);
     }
