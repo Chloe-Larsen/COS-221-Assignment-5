@@ -24,7 +24,7 @@ if ($method === "GET") {
 
 } else if ($method === "POST") {
     if (empty($user['agencyId'])) {
-        sendRes(403, ["message" => "Forbidden. Only Travel Agencies can create itinerary days."]);
+        sendRes(403, ["message" => "Only Travel Agencies can create itinerary days."]);
     }
 
     if (empty($data['packageId']) || empty($data['dayNumber'])) {
@@ -37,7 +37,7 @@ if ($method === "GET") {
     if ($package == null) {
         sendRes(404, ["message" => "Package not found"]);
     }
-    if ($package['agencyId'] && $user['agencyId']) {
+    if ($package['agencyId'] != $user['agencyId']) {
         sendRes(403, ["message" => "You can only add itinerary days to your own packages."]);
     }
 
@@ -85,7 +85,7 @@ if ($method === "GET") {
         ':packageId' => $data['packageId'],
         ':dayNumber' => $data['dayNumber']
     ];
-    
+
     if ($db->execute($updateQuery, $params)) {
         sendRes(200, ["message" => "Itinerary day updated successfully"]);
     } else {
