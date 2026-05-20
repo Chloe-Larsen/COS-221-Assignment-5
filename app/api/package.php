@@ -5,18 +5,18 @@ if ($method === "GET") {
         $package = $db->fetch($query, [':id' => $_GET['id']]);
 
         if ($package) {
-            sendRes(200, ["message" => "Success", "data" => $package]);
+            send_res(200, ["message" => "Success", "data" => $package]);
         } else {
-            sendRes(404, ["message" => "Package not found."]);
+            send_res(404, ["message" => "Package not found."]);
         }
     } else {
         $query = "SELECT * FROM Package";
         $package = $db->fetchAll($query);
-        sendRes(200, ["message" => "Success", "data" => $package]);
+        send_res(200, ["message" => "Success", "data" => $package]);
     }
 } else if ($method === "POST") {
-    if (empty($user['agencyId'])) {
-        sendRes(401, ["message" => "Unauthorized. A 'agencyId' is required."]);
+    if (empty($authenticated_user['agencyId'])) {
+        send_res(401, ["message" => "Unauthorized. A 'agencyId' is required."]);
     }
     $query = "INSERT INTO Package (name, description, duration, basePrice, agencyId, maxCapacity) 
                 VALUES (:name, :description, :duration, :basePrice, :agencyId, :maxCapacity)";
@@ -26,27 +26,27 @@ if ($method === "GET") {
         ':description' => isset($data['description']) ? $data['description'] : null,
         ':duration' => isset($data['duration']) ? $data['duration'] : null,
         ':basePrice' => isset($data['basePrice']) ? $data['basePrice'] : null,
-        ':agencyId' => $user['agencyId'],
+        ':agencyId' => $authenticated_user['agencyId'],
         ':maxCapacity' => isset($data['maxCapacity']) ? $data['maxCapacity'] : null
     ];
     if ($db->execute($query, $params)) {
-        sendRes(201, ["message" => "Package created successfully."]);
+        send_res(201, ["message" => "Package created successfully."]);
     } else {
-        sendRes(503, ["message" => "Unable to create package."]);
+        send_res(503, ["message" => "Unable to create package."]);
     }
 } else if ($method === "PUT") {
     if (empty($data['packageId'])) {
-        sendRes(401, ["message" => "Unauthorized. A 'agencyId' is required."]);
+        send_res(401, ["message" => "Unauthorized. A 'agencyId' is required."]);
     }
 
     $query = "SELECT agencyId FROM Package WHERE packageId = :id";
     $package = $db->fetch($query, [':id' => $data['packageId']]);
 
     if ($package == null) {
-        sendRes(404, ["message" => "Package not found"]);
+        send_res(404, ["message" => "Package not found"]);
     }
-    if ($package['agencyId'] != $user['agencyId']) {
-        sendRes(403, ["message" => "Do not have permission to edit"]);
+    if ($package['agencyId'] != $authenticated_user['agencyId']) {
+        send_res(403, ["message" => "Do not have permission to edit"]);
     }
 
     $updateQuery = "UPDATE Package 
@@ -63,8 +63,8 @@ if ($method === "GET") {
     ];
 
     if ($db->execute($updateQuery, $params)) {
-        sendRes(200, ["message" => "Package created successfully."]);
+        send_res(200, ["message" => "Package created successfully."]);
     } else {
-        sendRes(503, ["message" => "Unable to create package."]);
+        send_res(503, ["message" => "Unable to create package."]);
     }
 }

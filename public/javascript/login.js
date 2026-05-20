@@ -46,7 +46,6 @@ loginForm.addEventListener("submit", async (e) => {
             }
         }
 
-        console.log(response)
         if (response.ok) {
             showAlert("Login successful! Redirecting...", false);
             setTimeout(() => {

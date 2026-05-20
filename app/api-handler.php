@@ -6,7 +6,7 @@
 
 // helper function for setting cookies
 
-function setCookieHelper($name, $value)
+function set_cookie_helper($name, $value)
 {
     setcookie(
         $name,
@@ -17,6 +17,26 @@ function setCookieHelper($name, $value)
         true,       // Secure: Only transmit over HTTPS (set to false ONLY on local localhost without SSL)
         false        // HttpOnly: Hidden from JavaScript. Blocks XSS theft completely! (false so that frontend js can remove the cookie)
     );
+}
+
+$authenticated_user = null;
+
+function authenticate_user()
+{
+    global $db, $authenticated_user;
+
+    if (!isset($_COOKIE['apiKey'])) {
+        send_res(401, ["message" => "No API key set"]);
+    }
+
+    $apiKey = $_COOKIE['apiKey'];
+    $authenticated_user = $db->fetch("SELECT * FROM User WHERE apiKey = :apiKey", [
+        "apiKey" => $apiKey
+    ]);
+
+    if (!$authenticated_user) {
+        send_res(401, ["message" => "Invalid API key"]);
+    }
 }
 
 $routes = [

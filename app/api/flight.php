@@ -5,13 +5,13 @@ if ($method === "GET") {
         $flight = $db->fetch($query, [':id' => $_GET['id']]);
 
         if ($flight) {
-            sendRes(200, ["message" => "Success", "data" => $flight]);
+            send_res(200, ["message" => "Success", "data" => $flight]);
         } else {
-            sendRes(404, ["message" => "Destination not found."]);
+            send_res(404, ["message" => "Destination not found."]);
         }
     } else {
         $query = "SELECT * FROM Flight";
         $flights = $db->fetchAll($query);
-        sendRes(200, ["message" => "Success", "data" => $flights]);
+        send_res(200, ["message" => "Success", "data" => $flights]);
     }
 }

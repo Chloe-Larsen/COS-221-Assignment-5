@@ -5,19 +5,22 @@ if ($method === "GET") {
         $accommodation = $db->fetch($query, [':id' => $_GET['id']]);
 
         if ($accommodation) {
-            sendRes(200, ["message" => "Success", "data" => $accommodation]);
+            send_res(200, ["message" => "Success", "data" => $accommodation]);
         } else {
-            sendRes(404, ["message" => "Accommodation not found."]);
+            send_res(404, ["message" => "Accommodation not found."]);
         }
     } else {
         $query = "SELECT * FROM Accommodation";
         $accommodations = $db->fetchAll($query);
-        sendRes(200, ["message" => "Success", "data" => $accommodations]);
+        send_res(200, ["message" => "Success", "data" => $accommodations]);
     }
 } else if ($method === "POST") {
-    if (empty($user['agencyId'])) {
-        sendRes(400, ["message" => "Incomplete data. 'agencyId' is required."]);
+    authenticate_user();
+
+    if ($authenticated_user["agencyId"] !== $data["agencyId"]) {
+        send_res(403, ["message" => "No permission to modify the agency"]);
     }
+
     $query = "INSERT INTO Accommodation (name, type, buildingNumber, street, suburb, postalCode, agencyId) 
                 VALUES (:name, :type, :buildingNumber, :street, :suburb, :postalCode, :agencyId)";
 
@@ -27,26 +30,24 @@ if ($method === "GET") {
         ':buildingNumber' => isset($data['buildingNumber']) ? $data['buildingNumber'] : null,
         ':street' => isset($data['street']) ? $data['street'] : null,
         ':suburb' => isset($data['suburb']) ? $data['suburb'] : null,
-        ':postalCode' => isset($data['postalCode']) ? $data['postalCode'] : null,
-        ':agencyId' => (int) $user['agencyId']
+        ':postalCode' => isset($data['postalCode']) ?: null,
+        ':agencyId' => $data['agencyId']
     ];
     if ($db->execute($query, $params)) {
-        sendRes(201, ["message" => "Accommodation created successfully."]);
+        send_res(201, ["message" => "Accommodation created successfully."]);
     } else {
-        sendRes(503, ["message" => "Unable to create accommodation."]);
+        send_res(503, ["message" => "Unable to create accommodation."]);
     }
 } else if ($method === "PUT") {
-    if (empty($data['accommodationId'])) {
-        sendRes(400, ["message" => "Incomplete data. 'accommodationId' is required."]);
-    }
+    authenticate_user();
 
     $query = "SELECT agencyId FROM Accommodation WHERE accommodationId = :id";
     $accommodation = $db->fetch($query, [':id' => $data['accommodationId']]);
     if ($accommodation == null) {
-        sendRes(404, ["message" => "Accommodation not found"]);
+        send_res(404, ["message" => "Accommodation not found"]);
     }
-    if ($accommodation['agencyId'] != $user['agencyId']) {
-        sendRes(403, ["message" => "Do not have premission to edit"]);
+    if ($accommodation['agencyId'] != $authenticated_user['agencyId']) {
+        send_res(403, ["message" => "Do not have premission to edit"]);
     }
 
     $updateQuery = "UPDATE Accommodation 
@@ -63,8 +64,8 @@ if ($method === "GET") {
         ':accId' => $data['accommodationId']
     ];
     if ($db->execute($updateQuery, $params)) {
-        sendRes(200, ["message" => "Accommodation updated successfully"]);
+        send_res(200, ["message" => "Accommodation updated successfully"]);
     } else {
-        sendRes(503, ["message" => "Unable to update accommodation"]);
+        send_res(503, ["message" => "Unable to update accommodation"]);
     }
 }

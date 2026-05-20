@@ -5,18 +5,18 @@ if ($method === "GET") {
         $attraction = $db->fetch($query, [':id' => $_GET['id']]);
 
         if ($attraction) {
-            sendRes(200, ["message" => "Success", "data" => $attraction]);
+            send_res(200, ["message" => "Success", "data" => $attraction]);
         } else {
-            sendRes(404, ["message" => "Attraction not found."]);
+            send_res(404, ["message" => "Attraction not found."]);
         }
     } else {
         $query = "SELECT * FROM Attraction";
         $accommodations = $db->fetchAll($query);
-        sendRes(200, ["message" => "Success", "data" => $accommodations]);
+        send_res(200, ["message" => "Success", "data" => $accommodations]);
     }
 } else if ($method === "POST") {
-    if (empty($user['agencyId'])) {
-        sendRes(400, ["message" => "Incomplete data. 'agencyId' is required."]);
+    if (empty($authenticated_user['agencyId'])) {
+        send_res(400, ["message" => "Incomplete data. 'agencyId' is required."]);
     }
     $query = "INSERT INTO Attraction (name, entranceFee, buildingNumber, street, suburb, postalCode, agencyId) 
                 VALUES (:name, :entranceFee, :buildingNumber, :street, :suburb, :postalCode, :agencyId)";
@@ -28,25 +28,25 @@ if ($method === "GET") {
         ':street' => isset($data['street']) ? $data['street'] : null,
         ':suburb' => isset($data['suburb']) ? $data['suburb'] : null,
         ':postalCode' => isset($data['postalCode']) ? $data['postalCode'] : null,
-        ':agencyId' => (int) $user['agencyId']
+        ':agencyId' => (int) $authenticated_user['agencyId']
     ];
     if ($db->execute($query, $params)) {
-        sendRes(201, ["message" => "Attraction created successfully."]);
+        send_res(201, ["message" => "Attraction created successfully."]);
     } else {
-        sendRes(503, ["message" => "Unable to create attraction."]);
+        send_res(503, ["message" => "Unable to create attraction."]);
     }
 } else if ($method === "PUT") {
     if (empty($data['attractionId'])) {
-        sendRes(400, ["message" => "Incomplete data. 'attractionId' is required."]);
+        send_res(400, ["message" => "Incomplete data. 'attractionId' is required."]);
     }
 
     $query = "SELECT agencyId FROM Attraction WHERE attractionId = :id";
     $attraction = $db->fetch($query, [':id' => $data['attractionId']]);
     if ($attraction == null) {
-        sendRes(404, ["message" => "Attraction not found"]);
+        send_res(404, ["message" => "Attraction not found"]);
     }
-    if ($attraction['agencyId'] != $user['agencyId']) {
-        sendRes(403, ["message" => "Do not have premission to edit"]);
+    if ($attraction['agencyId'] != $authenticated_user['agencyId']) {
+        send_res(403, ["message" => "Do not have premission to edit"]);
     }
 
     $updateQuery = "UPDATE Attraction 
@@ -63,8 +63,8 @@ if ($method === "GET") {
         ':attId' => $data['attractionId']
     ];
     if ($db->execute($updateQuery, $params)) {
-        sendRes(200, ["message" => "Attraction updated successfully"]);
+        send_res(200, ["message" => "Attraction updated successfully"]);
     } else {
-        sendRes(503, ["message" => "Unable to update attraction"]);
+        send_res(503, ["message" => "Unable to update attraction"]);
     }
 }

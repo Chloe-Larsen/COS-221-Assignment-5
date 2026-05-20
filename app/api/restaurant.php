@@ -5,18 +5,18 @@ if ($method === "GET") {
         $restaurant = $db->fetch($query, [':id' => $_GET['id']]);
 
         if ($restaurant) {
-            sendRes(200, ["message" => "Success", "data" => $restaurant]);
+            send_res(200, ["message" => "Success", "data" => $restaurant]);
         } else {
-            sendRes(404, ["message" => "Restaurant not found."]);
+            send_res(404, ["message" => "Restaurant not found."]);
         }
     } else {
         $query = "SELECT * FROM Restaurant";
         $restaurant = $db->fetchAll($query);
-        sendRes(200, ["message" => "Success", "data" => $restaurant]);
+        send_res(200, ["message" => "Success", "data" => $restaurant]);
     }
 } else if ($method === "POST") {
-    if (empty($user['agencyId'])) {
-        sendRes(400, ["message" => "Incomplete data. 'agencyId' is required."]);
+    if (empty($authenticated_user['agencyId'])) {
+        send_res(400, ["message" => "Incomplete data. 'agencyId' is required."]);
     }
     $query = "INSERT INTO Restaurant (name, buildingNumber, street, suburb, postalCode, agencyId) 
                 VALUES (:name, :buildingNumber, :street, :suburb, :postalCode, :agencyId)";
@@ -27,25 +27,25 @@ if ($method === "GET") {
         ':street' => isset($data['street']) ? $data['street'] : null,
         ':suburb' => isset($data['suburb']) ? $data['suburb'] : null,
         ':postalCode' => isset($data['postalCode']) ? $data['postalCode'] : null,
-        ':agencyId' => (int) $user['agencyId']
+        ':agencyId' => (int) $authenticated_user['agencyId']
     ];
     if ($db->execute($query, $params)) {
-        sendRes(201, ["message" => "Restaurant created successfully."]);
+        send_res(201, ["message" => "Restaurant created successfully."]);
     } else {
-        sendRes(503, ["message" => "Unable to create restaurant."]);
+        send_res(503, ["message" => "Unable to create restaurant."]);
     }
 } else if ($method === "PUT") {
     if (empty($data['restaurantId'])) {
-        sendRes(400, ["message" => "Incomplete data. 'restaurantId' is required."]);
+        send_res(400, ["message" => "Incomplete data. 'restaurantId' is required."]);
     }
 
     $query = "SELECT agencyId FROM Restaurant WHERE restaurantId = :id";
     $restaurant = $db->fetch($query, [':id' => $data['restaurantId']]);
     if ($restaurant == null) {
-        sendRes(404, ["message" => "Restaurant not found"]);
+        send_res(404, ["message" => "Restaurant not found"]);
     }
-    if ($restaurant['agencyId'] != $user['agencyId']) {
-        sendRes(403, ["message" => "Do not have premission to edit"]);
+    if ($restaurant['agencyId'] != $authenticated_user['agencyId']) {
+        send_res(403, ["message" => "Do not have premission to edit"]);
     }
 
     $updateQuery = "UPDATE Restaurant 
@@ -61,8 +61,8 @@ if ($method === "GET") {
         ':attId' => $data['restaurantId']
     ];
     if ($db->execute($updateQuery, $params)) {
-        sendRes(200, ["message" => "Restaurant updated successfully"]);
+        send_res(200, ["message" => "Restaurant updated successfully"]);
     } else {
-        sendRes(503, ["message" => "Unable to update restaurant"]);
+        send_res(503, ["message" => "Unable to update restaurant"]);
     }
 }

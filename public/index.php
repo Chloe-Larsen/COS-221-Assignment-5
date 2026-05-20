@@ -3,7 +3,7 @@
     Handles all routing for the website.
 */
 
-function sendRes($httpCode, $json = null)
+function send_res($httpCode, $json = null)
 {
     header("Content-Type: application/json"); // tell the client that json is being sent back
     http_response_code($httpCode);
@@ -20,7 +20,7 @@ register_shutdown_function(function () {
             // clear any buffered output if using output buffering (ob_start)
             ob_clean();
         }
-        sendRes(500, [
+        send_res(500, [
             "error" => "Internal Server Error",
             "message" => $error['message']
         ]);
@@ -43,4 +43,4 @@ if (str_starts_with($currentRoute, "/api")) {
     require_once __DIR__ . "/../app/view-handler.php";
 }
 
-sendRes(404, ["message" => "Invalid endpoint or method"]);
+send_res(404, ["message" => "Invalid endpoint or method"]);

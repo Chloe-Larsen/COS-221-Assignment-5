@@ -5,18 +5,18 @@ if ($method === "GET") {
         $review = $db->fetch($query, [':id' => $_GET['id']]);
 
         if ($review) {
-            sendRes(200, ["message" => "Success", "data" => $review]);
+            send_res(200, ["message" => "Success", "data" => $review]);
         } else {
-            sendRes(404, ["message" => "Review not found."]);
+            send_res(404, ["message" => "Review not found."]);
         }
     } else {
         $query = "SELECT * FROM Review";
         $review = $db->fetchAll($query);
-        sendRes(200, ["message" => "Success", "data" => $review]);
+        send_res(200, ["message" => "Success", "data" => $review]);
     }
 } else if ($method === "POST") {
-    if (empty($user['userId'])) {
-        sendRes(401, ["message" => "Unauthorized. Please log in to leave a review."]);
+    if (empty($authenticated_user['userId'])) {
+        send_res(401, ["message" => "Unauthorized. Please log in to leave a review."]);
     }
     $query = "INSERT INTO Review (rating, comment, timestamp, userId, packageId) 
                 VALUES (:rating, :comment, :timestamp, :userId, :packageId)";
@@ -25,12 +25,12 @@ if ($method === "GET") {
         ':rating' => $data['rating'],        
         ':comment' => isset($data['comment']) ? $data['comment'] : null,
         ':timestamp' => isset($data['timestamp']) ? $data['timestamp'] : null,
-        ':userId' => $user['userId'],
+        ':userId' => $authenticated_user['userId'],
         ':packageId' => isset($data['packageId']) ? $data['packageId'] : null        
     ];
     if ($db->execute($query, $params)) {
-        sendRes(201, ["message" => "Review created successfully."]);
+        send_res(201, ["message" => "Review created successfully."]);
     } else {
-        sendRes(503, ["message" => "Unable to create review."]);
+        send_res(503, ["message" => "Unable to create review."]);
     }
 }
