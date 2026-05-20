@@ -25,6 +25,10 @@ if ($method === "GET") {
 } else if ($method === "POST") {
     authenticate_user();
 
+    if ($authenticated_user["agencyId"] === null) {
+        send_res(403, ["message" => "Not part of an agency"]);
+    }
+
     if (empty($data['packageId']) || empty($data['dayNumber'])) {
         send_res(400, ["message" => "Incomplete data. 'packageId' and 'dayNumber' are required."]);
     }
@@ -59,6 +63,10 @@ if ($method === "GET") {
 
 } else if ($method === "PUT") {
     authenticate_user();
+
+    if ($authenticated_user["agencyId"] === null) {
+        send_res(403, ["message" => "Not part of an agency"]);
+    }
     if (empty($data['packageId']) || empty($data['dayNumber'])) {
         send_res(400, ["message" => "Incomplete data. Both 'packageId' and 'dayNumber' are required to update."]);
     }

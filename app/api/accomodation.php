@@ -17,6 +17,9 @@ if ($method === "GET") {
 } else if ($method === "POST") {
     authenticate_user();
 
+    if ($authenticated_user["agencyId"] === null) {
+        send_res(403, ["message" => "Not part of an agency"]);
+    }
     if ($authenticated_user["agencyId"] !== $data["agencyId"]) {
         send_res(403, ["message" => "No permission to modify the agency"]);
     }
@@ -40,6 +43,10 @@ if ($method === "GET") {
     }
 } else if ($method === "PUT") {
     authenticate_user();
+
+    if ($authenticated_user["agencyId"] === null) {
+        send_res(403, ["message" => "Not part of an agency"]);
+    }
 
     $query = "SELECT agencyId FROM Accommodation WHERE accommodationId = :id";
     $accommodation = $db->fetch($query, [':id' => $data['accommodationId']]);
