@@ -11,7 +11,7 @@ if ($method === "GET") {
         }
     } else {
         $query = "SELECT * FROM Flight";
-        $flight = $db->fetchAll($query);
-        sendRes(200, ["message" => "Success", "data" => $flight]);
+        $flights = $db->fetchAll($query);
+        sendRes(200, ["message" => "Success", "data" => $flights]);
     }
 }
