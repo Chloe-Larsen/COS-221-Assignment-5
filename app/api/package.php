@@ -25,8 +25,8 @@ if ($method === "GET") {
         ':name' => $data['name'],
         ':description' => isset($data['description']) ? $data['description'] : null,
         ':duration' => isset($data['duration']) ? $data['duration'] : null,
-        ':basePrice' => isset($user['basePrice']) ? $user['basePrice'] : null,
-        ':agencyId' => isset($data['agencyId']) ? $data['agencyId'] : null,
+        ':basePrice' => isset($data['basePrice']) ? $data['basePrice'] : null,
+        ':agencyId' => $user['agencyId'],
         ':maxCapacity' => isset($data['maxCapacity']) ? $data['maxCapacity'] : null
     ];
     if ($db->execute($query, $params)) {
@@ -62,8 +62,8 @@ if ($method === "GET") {
         ':pId' => $data['packageId']
     ];
 
-    if ($db->execute($query, $params)) {
-        sendRes(201, ["message" => "Package created successfully."]);
+    if ($db->execute($updateQuery, $params)) {
+        sendRes(200, ["message" => "Package created successfully."]);
     } else {
         sendRes(503, ["message" => "Unable to create package."]);
     }
