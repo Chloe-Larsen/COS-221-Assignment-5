@@ -18,6 +18,7 @@ function setupImageVariables($type)
 }
 
 if ($method === "GET") {
+    authenticate_user();
     $type = $_GET['type'] ?? null;
     setupImageVariables($type);
     if (isset($_GET['imageId'])) {
@@ -35,6 +36,7 @@ if ($method === "GET") {
         send_Res(200, ["message" => "Success", "data" => $images]);
     }
 } else if ($method === "POST") {
+    authenticate_user();
     $type = $data['type'] ?? null;
     setupImageVariables($type);
     if (empty($authenticated_user['agencyId'])) {
